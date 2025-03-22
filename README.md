@@ -1,9 +1,9 @@
 # MindFlow - Data Pipeline for Mental Health Analysis  
 
-## 📌 About the Project  
+## About the Project  
 **MindFlow** is a data pipeline developed to analyze patterns and correlations between mental health and lifestyle. The project processes a dataset containing information on daily habits, emotional well-being, and factors affecting mental health, providing valuable insights through interactive dashboards.  
 
-## 🚀 Technologies Used  
+## Technologies Used  
 - **Apache Airflow** - Workflow orchestration  
 - **MinIO** - Object storage (S3-compatible)  
 - **MariaDB** - Relational database for structured storage  
@@ -11,7 +11,7 @@
 - **Pandas/PySpark** - Data processing and transformation  
 - **Docker & Docker Compose** - Isolated execution environment  
 
-## 🔧 Pipeline Architecture  
+## Pipeline Architecture  
 The pipeline follows an **ETL (Extract, Transform, Load)** flow structured as follows:  
 
 1. **Extraction**  
@@ -35,7 +35,7 @@ graph TD;
     D -->|Visualize| E[Metabase Dashboard];
 ```
 
-## 🛠️ How to Run the Project  
+## How to Run the Project  
 
 ### 📂 Prerequisites  
 Before starting, you need to have:  
