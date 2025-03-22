@@ -1,9 +1,9 @@
-# MindFlow - Data Pipeline for Mental Health Analysis  
+### **MindFlow - Data Pipeline for Mental Health Analysis**
 
-## About the Project  
+#### **About the Project**  
 **MindFlow** is a data pipeline developed to analyze patterns and correlations between mental health and lifestyle. The project processes a dataset containing information on daily habits, emotional well-being, and factors affecting mental health, providing valuable insights through interactive dashboards.  
 
-## Technologies Used  
+#### **Technologies Used**  
 - **Apache Airflow** - Workflow orchestration  
 - **MinIO** - Object storage (S3-compatible)  
 - **MariaDB** - Relational database for structured storage  
@@ -11,11 +11,11 @@
 - **Pandas/PySpark** - Data processing and transformation  
 - **Docker & Docker Compose** - Isolated execution environment  
 
-## Pipeline Architecture  
+#### **Pipeline Architecture**  
 The pipeline follows an **ETL (Extract, Transform, Load)** flow structured as follows:  
 
 1. **Extraction**  
-   - The **Mental_Health_Lifestyle_Dataset.csv** file is uploaded to MinIO.  
+   - The **Mental_Health_Lifestyle_Dataset.csv** file is uploaded to **MinIO**.  
 
 2. **Transformation**  
    - Data is processed using **Pandas/PySpark** for cleaning, normalization, and enrichment.  
@@ -26,7 +26,7 @@ The pipeline follows an **ETL (Extract, Transform, Load)** flow structured as fo
 4. **Visualization**  
    - **Metabase** is used to create interactive dashboards and explore mental health patterns.  
 
-### 📊 Pipeline Flow  
+#### **📊 Pipeline Flow**  
 ```mermaid
 graph TD;
     A[CSV Dataset] -->|Extract| B[MinIO S3 Storage];
@@ -35,19 +35,19 @@ graph TD;
     D -->|Visualize| E[Metabase Dashboard];
 ```
 
-## How to Run the Project  
+#### **How to Run the Project**
 
-### 📂 Prerequisites  
+##### **📂 Prerequisites**  
 Before starting, you need to have:  
 - **Docker** and **Docker Compose** installed  
 - **Python 3.x**  
 - **Pandas/PySpark** for data processing  
 
-### ▶️ Step-by-Step Guide  
+##### **▶️ Step-by-Step Guide**  
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-username/mindflow.git
+   git clone https://github.com/your-username/mindflow.git  
    cd mindflow
    ```
 
@@ -67,7 +67,7 @@ Before starting, you need to have:
 5. Run the DAG in Airflow to start the pipeline.  
 
 6. Access Metabase for data visualization:  
-   - URL: [http://localhost:3000](http://localhost:3000)  
+   - URL: [http://localhost:3000](http://localhost:3000)
 
-## 📜 Dataset  
-Kaggle: [🧠 Mental Health and Lifestyle Habits (2019-2024)](https://www.kaggle.com/datasets/atharvasoundankar/mental-health-and-lifestyle-habits-2019-2024) 
+#### **📜 Dataset**  
+Kaggle: 🧠 [Mental Health and Lifestyle Habits (2019-2024)](https://www.kaggle.com/datasets/mental-health-and-lifestyle)
