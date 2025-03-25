@@ -5,6 +5,7 @@ from airflow.operators.python import PythonOperator
 from airflow.utils.task_group import TaskGroup
 from tasks.landing import google_sheet_to_minio_etl
 
+# Configuração padrão da DAG
 default_args = {
     'owner': 'Nicollas Garibaldi',
     'depends_on_past': False,
@@ -18,24 +19,25 @@ default_args = {
 @dag(
     dag_id='main_dag',
     default_args=default_args,
-    description='DAG responsável pelo ETL do case breweries',
-    schedule=timedelta(days=1),  # Usando "schedule" no lugar de "schedule_interval"
+    description='DAG responsável pelo ETL do dataset de saúde mental',
+    schedule=timedelta(days=1),
     catchup=False
 )
 def main_dag():
-    google_sheets = ["cars_24_combined"]  # Altere para o nome das abas da sua planilha
+    # Nome correto da aba da planilha
+    google_sheets = ["Mental Health Lifestyle"]  # Atualize para a aba correta da planilha
     bucket_name = 'landing'
     endpoint_url = 'http://minio:9000'
     access_key = 'minioadmin'
     secret_key = 'minio@1234!'
-    sheet_id = '10v24Oj9fgciYq8CB-9Bv--bkOuEA41xP8tbQD-DId8w'
+    sheet_id = '1cK7S70LhKyMBWyiaKIazsqkaRCgW0KXrrX8bkRJKQ5Y'
 
     with TaskGroup("group_task_sheets", tooltip="Tasks processadas do Google Sheets para MinIO, salvando em .parquet") as group_task_sheets:
-        for sheets_name in google_sheets:
+        for sheet_name in google_sheets:
             PythonOperator(
-                task_id=f'task_sheets_{sheets_name.replace(" ", "_").replace(",", "").replace("(", "").replace(")", "").replace("&", "and")}',
+                task_id=f'task_sheets_{sheet_name.replace(" ", "_").replace(",", "").replace("(", "").replace(")", "").replace("&", "and")}',
                 python_callable=google_sheet_to_minio_etl,
-                op_args=[sheet_id, sheets_name, bucket_name, endpoint_url, access_key, secret_key]
+                op_args=[sheet_id, sheet_name, bucket_name, endpoint_url, access_key, secret_key]
             )
 
     group_task_sheets  # Definir a ordem de execução, se necessário

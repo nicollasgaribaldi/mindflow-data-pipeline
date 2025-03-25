@@ -32,7 +32,7 @@ services:
       POSTGRES_PASSWORD: airflow_123
       POSTGRES_DB: airflow
     ports:
-      - "5435:5435"
+      - "5435:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     
@@ -98,7 +98,7 @@ services:
       POSTGRES_USER: metabase
       POSTGRES_PASSWORD: metabase_password
     ports:
-      - "5436:5436"
+      - "5436:5432"
     volumes:
       - postgres_metabase_data:/var/lib/postgresql/data
 

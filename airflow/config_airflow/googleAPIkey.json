@@ -1,3 +1,13 @@
 {
-
+  "type": "service_account",
+  "project_id": "dataengineeringanalytics",
+  "private_key_id": "0c76dbbe55f2a502e982365dc365dababf2945ae",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC6NgAe6VVLF2jQ\nDMc8a5BJOujjUWWcqFGnCHp+zN8Z7t8H739IKXWTbLc9n5mUoqmKi5mTa5wQGezY\nv6uIfPdKqNg548MKe5IipgSWimD094DDwISFLKl2y843vjrM0BzM9QtC72fB5Emi\nh0CXdgCmJZm3UgccET5vf8Q2IRZWTPYb1j7I7sJTgz+GN70H/lseer7eO8VwNDeT\ndkRo8dxEAnXcGi07YEKng9aaAeaTSa1LXnfrDxdhQ4f8BUrQ7JnPoma8yrqTFLuR\n1RqnIejD6I6qGJhgywyUh1lcnspOhtLkuDRWug4ybR2Luxx3dhPTIB2EHaUTnCvO\niBwfp/ohAgMBAAECggEAHiNz2Qz0gmMfUn8i9x9EuumHPJWVz+l5T8LiSqgfmvur\nywXDMNuO/WW88cMlcSZzsOof2PmziHKdwEYjfgOV5dZWquX3kTiHYkbDGtd6UmPF\nykkcWc6s/f6GGcUXEMPFSZIGuNZ1UW9A0Ma52FnfyIRw8PgckPkkhRjlmco4qo5i\n+8sGxoOqUkAmEc5Cbv4TbEeuwuquKgxwrMRWQhCsJgCdRdcEqI+rZbeNo0myfloQ\naRWP9lt+eKEeH0r1gyNDOcay+T9pmP1p2HdMPB6tp65+I2IO0b4lFD7mWJ7cOzhe\nLuArSfulyc5CpKr6VFOuvPpxznMKoFL6ksXLA3JwvQKBgQDowdDvMQA/Z34E/YGW\njn7kViEUYah2DI734mjkhdw0Xz0um93J6PLNa5T+5GJTtyfqyNNuhpym/C6lA+L7\nzsiX48vRiglbC2lJJ6st9CeQcadS69AT5rG2x9F4XE2vFjNiUbHoOIP4cX9eSp52\nufNw+4MdDUoGiXERfz2ewPL8hQKBgQDMzkg40+ObSzH/D9URF2jHmB7+gJIyrozc\nkQT/0oGDdV8tTri6h6RiBRIQdZrM4kjmR5VVvlxleJYKwELGLo86YHUm73J5szhU\nY2or8gZypK6zD5fu2Sc/NmO/SPHF2TpS/FOjYODOMKuC6G1PkSOLe3UjDSbSKRXG\nxLI3+kdX7QKBgF6d0yI4qCIeHvNGXjRmrpyBiqbvX/zE9CU+S2eCJta/VG6q+8jF\nQlZRAltvWa0wSjC9/Hz0iZ+z6f44iz/TemWMO2FtnIn/JIiRcJuYobCtEti5dXdx\nkxJ7PeKQmx+uharVDN4ag0MuWBlreelHg/eMtmrL6SipHGaBc/oh82TFAoGAId9Q\nFI3+y9VQ7IVa0NvVSYWAQslS5Kz3wRb/A6x2HR7RYfXuGXOLnWaHSU+aDZ6zPdrC\n+Q5ly6Z48khAAvT6XUZMuebKQRSCEXrruV7q8BUKi7TdhPRHSG4fayiOTBGUUttG\nnfPM2m00QI9eXNV9UnlVszlenU2MO3aWnyl2mTUCgYEAiAjxpyLHEa00Dd5kLPWL\n0YqBebTJYbhG5p4r3ZV4LC3sxOf/Zyn5EakYhBvnzi0B9QZxdd2smz3iaieb1sjk\nMXbyeu100QkA7Hlnydj78Z874xZJr7beibseWpHOs0iPyccrj+oDBtLlIETHPulu\nbGSrUCctTGAPuej1s1SgWu8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "dataengineeringanalytics@dataengineeringanalytics.iam.gserviceaccount.com",
+  "client_id": "100503920317993594219",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dataengineeringanalytics%40dataengineeringanalytics.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
 }
