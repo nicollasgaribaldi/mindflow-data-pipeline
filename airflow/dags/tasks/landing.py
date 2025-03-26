@@ -12,38 +12,42 @@ from airflow.settings import Session
 
 def create_mariadb_connection():
     session = Session()
-    existing_conn = session.query(Connection).filter_by(conn_id="mariadb_default").first()
+    existing_conn = session.query(Connection).filter_by(conn_id="local_mariadb").first()
     if existing_conn:
-        print("A conexão 'mariadb_default' já existe.")
+        print("A conexão 'local_mariadb' já existe.")
         session.close()
         return
 
     new_conn = Connection(
-        conn_id="mariadb_default",
+        conn_id="local_mariadb",
         conn_type="mysql",
-        host="localhost",
+        host="local_mariadb",
         schema="lakeestudo",
         login="mariadb",
         password="maria123",
-        port=3307,
+        port=3306,
         extra='{"charset": "utf8", "ssl": {}}'
     )
     session.add(new_conn)
     session.commit()
     session.close()
-    print("Conexão 'mariadb_default' criada com sucesso.")
+    print("Conexão 'local_mariadb' criada com sucesso.")
 
 def wait_for_mariadb():
-    retries = 5
+    retries = 10
+    delay = 10
     for i in range(retries):
         try:
-            mariadb_hook = MySqlHook(mysql_conn_id='mariadb_default')
-            conn = mariadb_hook.get_conn()
-            conn.ping(reconnect=True)
-            return
+            mariadb_hook = MySqlHook(mysql_conn_id='local_mariadb')
+            # Teste alternativo executando uma query simples
+            result = mariadb_hook.get_first("SELECT 1")
+            if result and result[0] == 1:
+                print("Conexão com MariaDB estabelecida com sucesso!")
+                return
         except Exception as e:
-            time.sleep(5)
-    raise ConnectionError("Não foi possível conectar ao MariaDB.")
+            print(f"Tentativa {i+1} de {retries}: Falha ao conectar ao MariaDB. Erro: {str(e)}")
+            time.sleep(delay)
+    raise ConnectionError("Não foi possível conectar ao MariaDB após várias tentativas.")
 
 def process_google_sheet_data(df):
     df['Age'] = df['Age'].astype(int)
@@ -56,7 +60,7 @@ def process_google_sheet_data(df):
 def google_sheet_to_minio_etl(sheet_id, sheet_name, bucket_name, endpoint_url, access_key, secret_key):
     create_mariadb_connection()
     wait_for_mariadb()
-    mariadb_hook = MySqlHook(mysql_conn_id='mariadb_default')
+    mariadb_hook = MySqlHook(mysql_conn_id='local_mariadb')
 
     minio_client = boto3.client(
         's3',
@@ -82,7 +86,7 @@ def google_sheet_to_minio_etl(sheet_id, sheet_name, bucket_name, endpoint_url, a
     insert_data_into_mariadb(df, sheet_name)
 
 def create_table_mariadb(table_name):
-    mariadb_hook = MySqlHook(mysql_conn_id='mariadb_default')
+    mariadb_hook = MySqlHook(mysql_conn_id='local_mariadb')
     create_table_query = f'''
     CREATE TABLE IF NOT EXISTS {table_name} (
         Country VARCHAR(255),
@@ -103,7 +107,7 @@ def create_table_mariadb(table_name):
 
 def insert_data_into_mariadb(df, table_name):
     create_table_mariadb(table_name)
-    mariadb_hook = MySqlHook(mysql_conn_id='mariadb_default')
+    mariadb_hook = MySqlHook(mysql_conn_id='local_mariadb')
     insert_query = f'''
     INSERT INTO {table_name} (Country, Age, Gender, Exercise_Level, Diet_Type, Sleep_Hours,
                               Stress_Level, Mental_Health_Condition, Work_Hours,

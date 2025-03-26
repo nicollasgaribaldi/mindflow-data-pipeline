@@ -24,8 +24,7 @@ default_args = {
     catchup=False
 )
 def main_dag():
-    # Nome correto da aba da planilha
-    google_sheets = ["Mental Health Lifestyle"]  # Atualize para a aba correta da planilha
+    google_sheets = ["Mental Health Lifestyle"]
     bucket_name = 'landing'
     endpoint_url = 'http://minio:9000'
     access_key = 'minioadmin'
@@ -40,6 +39,6 @@ def main_dag():
                 op_args=[sheet_id, sheet_name, bucket_name, endpoint_url, access_key, secret_key]
             )
 
-    group_task_sheets  # Definir a ordem de execução, se necessário
+    group_task_sheets
 
 main_dag_instance = main_dag()

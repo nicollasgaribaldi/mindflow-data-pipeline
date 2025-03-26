@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   minio:
     image: minio/minio
@@ -32,7 +33,7 @@ services:
       POSTGRES_PASSWORD: airflow_123
       POSTGRES_DB: airflow
     ports:
-      - "5435:5432"
+      - "5435:5435"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     
@@ -53,6 +54,7 @@ services:
     depends_on:
       - postgres-airflow
       - minio
+      - mariadb
     ports:
       - "8080:8080"
     volumes:
@@ -69,7 +71,7 @@ services:
       MYSQL_USER: mariadb                 
       MYSQL_PASSWORD: maria123        
     ports:
-      - "3307:3306"                      
+      - "3307:3306"                  
     volumes:
       - mariadb_data:/var/lib/mysql 
 
@@ -98,7 +100,7 @@ services:
       POSTGRES_USER: metabase
       POSTGRES_PASSWORD: metabase_password
     ports:
-      - "5436:5432"
+      - "5436:5436"
     volumes:
       - postgres_metabase_data:/var/lib/postgresql/data
 
