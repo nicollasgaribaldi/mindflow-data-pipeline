@@ -8,7 +8,6 @@ import uuid
 from sqlalchemy import create_engine
 import pymysql
 
-# Configuração do logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -31,7 +30,6 @@ def google_sheet_to_minio_and_mariadb_etl(sheet_id, sheet_name, bucket_name, end
                 raise ValueError(f"Nenhum dado foi retornado para a planilha {sheet_name}")
             df = pd.DataFrame(data)
 
-            # Criar a coluna 'user_id' se não existir
             if 'user_id' not in df.columns:
                 logger.warning("'user_id' não encontrado. Criando identificadores únicos.")
                 df.insert(0, 'user_id', [str(uuid.uuid4()) for _ in range(len(df))])
@@ -44,7 +42,6 @@ def google_sheet_to_minio_and_mariadb_etl(sheet_id, sheet_name, bucket_name, end
     try:
         df = get_google_sheet_data(sheet_id, sheet_name)
         
-        # Salvar no MinIO
         parquet_buffer = io.BytesIO()
         df.to_parquet(parquet_buffer, index=False)
         parquet_buffer.seek(0)
@@ -55,7 +52,6 @@ def google_sheet_to_minio_and_mariadb_etl(sheet_id, sheet_name, bucket_name, end
         )
         logger.info(f"Arquivo lnd_{sheet_name}.parquet salvo no bucket {bucket_name}")
         
-        # Salvar no MariaDB
         save_to_mariadb(df, f"landing_{sheet_name.lower()}")
         
     except Exception as e:

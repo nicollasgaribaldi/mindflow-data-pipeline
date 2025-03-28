@@ -8,12 +8,10 @@ import os
 import logging
 import sys
 
-# Adiciona o caminho para a pasta tasks ao PYTHONPATH
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 logger = logging.getLogger(__name__)
 
-# Importe as funções com tratamento de erro
 try:
     from tasks.landing import google_sheet_to_minio_and_mariadb_etl
     from tasks.processing import (
@@ -60,7 +58,6 @@ def mental_health_pipeline():
     bucket_name = 'landing'
     sheet_id = '1cK7S70LhKyMBWyiaKIazsqkaRCgW0KXrrX8bkRJKQ5Y'
 
-    # Task Group para extração
     with TaskGroup("landing_group") as landing_group:
         for sheet_name in google_sheets:
             PythonOperator(
@@ -69,7 +66,6 @@ def mental_health_pipeline():
                 op_args=[sheet_id, sheet_name, bucket_name, endpoint_url, access_key, secret_key]
             )
 
-    # Task Group para processamento
     with TaskGroup("processing_group") as processing_group:
         for sheet_name in google_sheets:
             file_key = f"landing/{sheet_name}/lnd_{sheet_name}.parquet"
@@ -80,17 +76,16 @@ def mental_health_pipeline():
                 op_args=[bucket_name, file_key, endpoint_url, access_key, secret_key]
             )
             
-            # No seu dag_main.py, atualize a definição da silver_task:
             silver_task = PythonOperator(
                 task_id=f'silver_{sheet_name.lower()}',
                 python_callable=process_silver_layer,
                 op_kwargs={
-                    'df': bronze_task.output,  # DataFrame da camada bronze
+                    'df': bronze_task.output,
                     'bucket_name': bucket_name,
                     'file_key': file_key,
                     'endpoint_url': endpoint_url,
                     'access_key': access_key,
-                    'secret_key': secret_key  # Adicionando o parâmetro faltante
+                    'secret_key': secret_key
                 }
             )
             

@@ -9,7 +9,6 @@ from sqlalchemy import create_engine
 import pymysql
 from datetime import datetime
 
-# Configuração do logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -26,7 +25,6 @@ def save_to_mariadb(df, table_name):
     try:
         engine = get_db_engine()
         
-        # Conversão de tipos para evitar problemas no MySQL
         df = df.copy()
         for col in df.columns:
             if pd.api.types.is_object_dtype(df[col]):
@@ -86,7 +84,6 @@ def google_sheet_to_minio_and_mariadb_etl(sheet_id, sheet_name, bucket_name, end
     try:
         df = get_google_sheet_data(sheet_id, sheet_name)
         
-        # Salvar no MinIO (Landing)
         parquet_buffer = io.BytesIO()
         df.to_parquet(parquet_buffer, index=False)
         parquet_buffer.seek(0)
@@ -97,7 +94,6 @@ def google_sheet_to_minio_and_mariadb_etl(sheet_id, sheet_name, bucket_name, end
         )
         logger.info(f"Arquivo landing salvo no MinIO: lnd_{sheet_name}.parquet")
         
-        # Salvar no MariaDB (Landing)
         save_to_mariadb(df, f"landing_{sheet_name.lower()}")
         
         return df
@@ -116,16 +112,13 @@ def process_bronze_layer(bucket_name, file_key, endpoint_url, access_key, secret
             aws_secret_access_key=secret_key
         )
         
-        # Obter arquivo da landing zone
         obj = minio_client.get_object(Bucket=bucket_name, Key=file_key)
         df = pd.read_parquet(io.BytesIO(obj['Body'].read()))
         
-        # Transformações para bronze layer
         df.columns = [col.lower().replace(' ', '_') for col in df.columns]
         df['ingestion_timestamp'] = datetime.now()
         logger.info(f"Colunas após transformação: {df.columns.tolist()}")
         
-        # Salvar no MinIO (Bronze)
         bronze_buffer = io.BytesIO()
         df.to_parquet(bronze_buffer, index=False)
         bronze_buffer.seek(0)
@@ -138,7 +131,6 @@ def process_bronze_layer(bucket_name, file_key, endpoint_url, access_key, secret
         )
         logger.info(f"Arquivo bronze salvo no MinIO: {bronze_key}")
         
-        # Salvar no MariaDB (Bronze)
         table_name = "bronze_" + file_key.split('/')[-1].replace('.parquet', '')
         save_to_mariadb(df, table_name)
         
@@ -158,14 +150,12 @@ def process_silver_layer(df, bucket_name, file_key, endpoint_url, access_key, se
             aws_secret_access_key=secret_key
         )
         
-        # Transformações para silver layer
         df = df.copy()
         df.fillna({
             'age': df['age'].median(),
             'happiness_score': df['happiness_score'].mean()
         }, inplace=True)
         
-        # Salvar no MinIO (Silver)
         silver_buffer = io.BytesIO()
         df.to_parquet(silver_buffer, index=False)
         silver_buffer.seek(0)
@@ -178,7 +168,6 @@ def process_silver_layer(df, bucket_name, file_key, endpoint_url, access_key, se
         )
         logger.info(f"Arquivo silver salvo no MinIO: {silver_key}")
         
-        # Salvar no MariaDB (Silver)
         table_name = "silver_" + file_key.split('/')[-1].replace('.parquet', '')
         save_to_mariadb(df, table_name)
         
@@ -198,15 +187,12 @@ def process_gold_layer(df, bucket_name, file_key, endpoint_url, access_key, secr
             aws_secret_access_key=secret_key
         )
         
-        # Validação
         if 'user_id' not in df.columns:
             raise ValueError(f"Coluna 'user_id' não encontrada. Colunas disponíveis: {df.columns.tolist()}")
         
-        # Transformações para gold layer
         fact_table = df[['user_id', 'age', 'happiness_score']]
         dim_table = df[['user_id', 'country', 'gender']]
         
-        # Salvar fact table no MinIO
         fact_buffer = io.BytesIO()
         fact_table.to_parquet(fact_buffer, index=False)
         fact_buffer.seek(0)
@@ -219,7 +205,6 @@ def process_gold_layer(df, bucket_name, file_key, endpoint_url, access_key, secr
         )
         logger.info(f"Fact table salva no MinIO: {fact_key}")
         
-        # Salvar dimension table no MinIO
         dim_buffer = io.BytesIO()
         dim_table.to_parquet(dim_buffer, index=False)
         dim_buffer.seek(0)
@@ -232,7 +217,6 @@ def process_gold_layer(df, bucket_name, file_key, endpoint_url, access_key, secr
         )
         logger.info(f"Dimension table salva no MinIO: {dim_key}")
         
-        # Salvar no MariaDB (Gold)
         base_name = file_key.split('/')[-1].replace('.parquet', '')
         save_to_mariadb(fact_table, f"gold_fact_{base_name}")
         save_to_mariadb(dim_table, f"gold_dim_{base_name}")
