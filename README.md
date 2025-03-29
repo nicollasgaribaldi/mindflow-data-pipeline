@@ -15,11 +15,11 @@ The project structure is organized as follows:
 ```
 /MINDFLOW-DATA-PIPELINE  
 │  
-├── airflow/                             # Contains all Airflow-related configurations and DAGs  
-│   ├── config_airflow/                  # Airflow configuration files and custom setups  
-│   │   └── airflow.Dockerfile           # Custom Dockerfile for Airflow (extends the official image with additional dependencies)  
-│   ├── dags/                            # Directory for Airflow DAGs (Directed Acyclic Graphs)  
-│   │   ├── tasks/                       # Modular task definitions (reusable across DAGs)  
+├── airflow/                            # Contains all Airflow-related configurations and DAGs  
+│   ├── config_airflow/                 # Airflow configuration files and custom setups  
+│   │   └── airflow.Dockerfile          # Custom Dockerfile for Airflow (extends the official image with additional dependencies)  
+│   ├── dags/                           # Directory for Airflow DAGs (Directed Acyclic Graphs)  
+│   │   ├── tasks/                      # Modular task definitions (reusable across DAGs)  
 │   │   |   └── __init__.py             # Python package marker  
 │   │   |   └── landing.py              # Tasks related to raw data ingestion (landing zone operations)  
 │   │   |   └── processing.py           # Tasks for data processing (cleaning, transformations, etc.)  
