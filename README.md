@@ -50,16 +50,19 @@ The project is configured to run in a Docker environment. The `docker-compose.ya
 
 ## ![airflow2](https://github.com/user-attachments/assets/159a8038-6bf5-43fd-b0b1-328a6896b0f6) Airflow
 
+![Airflow](https://github.com/user-attachments/assets/0c5b4195-2f2d-4f79-8de8-060a2cd343a7)
+
 ## ![s3](https://github.com/user-attachments/assets/5a767046-d971-4b7d-97f2-02bb641f4b30) Minio
 
 ![MinIO](https://github.com/user-attachments/assets/3343c493-87e0-463d-92a4-ee8a3802cc86)
 
 ## ![Postgres](https://github.com/user-attachments/assets/79b963dc-9ced-4aa1-b2bd-880588012a6f) Postgres
 
+![DB](https://github.com/user-attachments/assets/b897b181-a202-48f3-a9d0-a05fd1c8bad1)
+
 ## ![metabase](https://github.com/user-attachments/assets/aab28b91-2e03-408b-ac4c-54b40d4056ba) Metabase
 
-
-
+![metabase](https://github.com/user-attachments/assets/af38e53d-715e-4350-993d-1cd92ac89f1d)
 
 ## 🚀 How to Get Started
 1. Clone the repository:
