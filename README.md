@@ -5,6 +5,8 @@ Below is the graphical representation of this project's architecture:
 
 **Architecture Diagram**
 
+![image](https://github.com/user-attachments/assets/83980de7-1366-4377-84ed-8a4acf2cfb0f)
+
 In this architecture, data is extracted from a Google Sheets spreadsheet, transformed to add the `user_id` column, and segmented into Bronze, Silver, and Gold layers. Then, the data is loaded into an S3 bucket, and visualization is configured via Metabase.
 
 ## 📂 Project Structure
