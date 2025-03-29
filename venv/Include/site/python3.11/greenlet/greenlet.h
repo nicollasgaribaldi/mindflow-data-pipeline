@@ -56,7 +56,7 @@ static void** _PyGreenlet_API = NULL;
 #    define PyGreenlet_Type \
         (*(PyTypeObject*)_PyGreenlet_API[PyGreenlet_Type_NUM])
 
-#    define PyExc_GreenletError \
+#    define PyExc_GreenletError \ 
         ((PyObject*)_PyGreenlet_API[PyExc_GreenletError_NUM])
 
 #    define PyExc_GreenletExit \

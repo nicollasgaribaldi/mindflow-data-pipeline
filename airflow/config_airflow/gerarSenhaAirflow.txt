@@ -1,3 +1,0 @@
-Comando para pegar senha no Aiflow via terminal:
-
-docker exec -it airflow cat standalone_admin_password.txt

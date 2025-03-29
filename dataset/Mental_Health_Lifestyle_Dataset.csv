@@ -2,7 +2,7 @@ Country,Age,Gender,Exercise Level,Diet Type,Sleep Hours,Stress Level,Mental Heal
 Brazil,48,Male,Low,Vegetarian,6.3,Low,None,21,4.0,7.8,6.5
 Australia,31,Male,Moderate,Vegan,4.9,Low,PTSD,48,5.2,8.2,6.8
 Japan,37,Female,Low,Vegetarian,7.2,High,None,43,4.7,9.6,9.7
-Brazil,35,Male,Low,Vegan,7.2,Low,Depression,43,2.2,8.2,6.6
+Brazil,35,Male,Low,Vegan,7.2,Low,Depression,43,2.2,8.2,6.6 
 Germany,46,Male,Low,Balanced,7.3,Low,Anxiety,35,3.6,4.7,4.4
 Japan,23,Other,Moderate,Balanced,2.7,Moderate,Anxiety,50,3.3,8.4,7.2
 Japan,49,Male,Moderate,Junk Food,6.6,Low,Anxiety,28,7.2,5.6,6.9
