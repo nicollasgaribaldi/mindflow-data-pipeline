@@ -48,19 +48,16 @@ The project is configured to run in a Docker environment. The `docker-compose.ya
 
 ![Docker](https://github.com/user-attachments/assets/759bbcfa-e349-4687-ac15-b12ea1a53488)
 
-## ![s3](https://github.com/user-attachments/assets/3e0b9922-8e61-4f5a-ae26-a8a46ee88a09)![metabase](https://github.com/user-attachments/assets/4c28a760-1282-4151-95f0-818dc1ff52e9) Airflow
+## ![airflow2](https://github.com/user-attachments/assets/159a8038-6bf5-43fd-b0b1-328a6896b0f6) Airflow
 
-![airflow2](https://github.com/user-attachments/assets/e23c6da4-81c2-4320-bae9-6f233d5225d2)
-
-## ![metabase](https://github.com/user-attachments/assets/b7bfb5ff-bbfe-4514-92b9-5fb7bad51fc0)![airflow2](https://github.com/user-attachments/assets/1b01fad8-9323-4e1e-b1a2-d0ea2145788e)
-
-![s3](https://github.com/user-attachments/assets/5a767046-d971-4b7d-97f2-02bb641f4b30) Minio
+## ![s3](https://github.com/user-attachments/assets/5a767046-d971-4b7d-97f2-02bb641f4b30) Minio
 
 ![MinIO](https://github.com/user-attachments/assets/3343c493-87e0-463d-92a4-ee8a3802cc86)
 
 ## Postgres
 
 ## ![metabase](https://github.com/user-attachments/assets/aab28b91-2e03-408b-ac4c-54b40d4056ba) Metabase
+
 
 
 
