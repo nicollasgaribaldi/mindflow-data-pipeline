@@ -13,29 +13,32 @@ In this architecture, data is extracted from a Google Sheets spreadsheet, transf
 The project structure is organized as follows:
 
 ```
-/MINDFLOW-DATA-PIPELINE
-│
-├── airflow/
-│   ├── config_airflow/
-│   │   └── airflow.Dockerfile           # Dockerfile customizado para o Airflow
-│   ├── dags/
-│   │   ├── tasks/
-│   │   |   └── __init__.py
-│   │   |   └── landing.py
-│   │   |   └── processing.py        
-│   │   └── dag_main.py                  # Arquivo principal da DAG contendo as extrações e as transformações
-├── dataset/                            # Nessa pasta existe os arquivos que utilizei para exploração dos dados e tratamentos realizados
-│   |   ├── Analysis/
-│   |   |   ├── landing/
-│   |   |   ├── bronze/
-│   |   |   ├── silver/
-│   |   |   ├── gold/
-│   |   └── Mental_Health_Lifestyle_Dataset.csv   # Raw Dataset
-├── image/                            
-├── venv/
-├── docker-compose.yaml                  # Estrutura e requisitos iniciais em container do projeto.
-├── requirements.txt                     # Responsavel pelas lib's principais para a criação do projeto.
-├── README.md                            # Documentação do projeto, utilizada para o entendimento e funcionamento do mesmo.
+/MINDFLOW-DATA-PIPELINE  
+│  
+├── airflow/                             # Contains all Airflow-related configurations and DAGs  
+│   ├── config_airflow/                  # Airflow configuration files and custom setups  
+│   │   └── airflow.Dockerfile           # Custom Dockerfile for Airflow (extends the official image with additional dependencies)  
+│   ├── dags/                            # Directory for Airflow DAGs (Directed Acyclic Graphs)  
+│   │   ├── tasks/                       # Modular task definitions (reusable across DAGs)  
+│   │   |   └── __init__.py             # Python package marker  
+│   │   |   └── landing.py              # Tasks related to raw data ingestion (landing zone operations)  
+│   │   |   └── processing.py           # Tasks for data processing (cleaning, transformations, etc.)  
+│   │   └── dag_main.py                 # Main DAG orchestrating the data pipeline (extract → transform → load)  
+│  
+├── dataset/                            # Contains raw data, processed datasets, and analysis artifacts  
+│   |   ├── Analysis/                   # Processed data layers (medallion architecture: landing → bronze → silver → gold)  
+│   |   |   ├── landing/                # Raw data as ingested (immutable)  
+│   |   |   ├── bronze/                 # Initial cleaned/validated data (schema enforcement, basic fixes)  
+│   |   |   ├── silver/                 # Enriched/transformed data (business logic applied)  
+│   |   |   ├── gold/                   # Final aggregated/analytical datasets (ready for consumption)  
+│   |   └── Mental_Health_Lifestyle_Dataset.csv   # Original raw dataset (source file)  
+│  
+├── image/                              # Stores visual assets (e.g., diagrams, charts) for documentation  
+├── venv/                               # Python virtual environment (dependency isolation)  
+│  
+├── docker-compose.yaml                 # Defines Airflow services (scheduler, webserver, etc.) and dependencies  
+├── requirements.txt                    # Python dependencies for the project (e.g., pandas, Airflow, custom libs)  
+├── README.md                           # Project overview, setup instructions, and pipeline documentation  
 ```
 
 ## 🛠️ Technologies Used
