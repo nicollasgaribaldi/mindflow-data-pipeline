@@ -57,7 +57,7 @@ The project is configured to run in a Docker environment. The `docker-compose.ya
 
 - **DAG:** The Directed Acyclic Graph (DAG) is defined in the `airflow/dags/` folder. The main file, `mindflow_dag.py`, orchestrates the data pipeline tasks, including data extraction, transformation, and loading.  
 - **Tasks:** The pipeline tasks are modularized within the `airflow/tasks/` directory. For example, `task_data_transformation.py` contains the logic for processing and structuring the dataset into Bronze, Silver, and Gold layers.  
-- **Configurations:** All Airflow-specific settings and customizations are located in the `airflow/config/` directory, ensuring proper environment setup and execution.  
+- **Configurations:** All Airflow-specific settings and customizations are located in the `airflow/config/` directory, ensuring proper environment setup and execution. 
 
 ![Airflow](https://github.com/user-attachments/assets/0c5b4195-2f2d-4f79-8de8-060a2cd343a7)
 
