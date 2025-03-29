@@ -62,7 +62,7 @@ The project is configured to run in a Docker environment. The `docker-compose.ya
 
 ## ![metabase](https://github.com/user-attachments/assets/aab28b91-2e03-408b-ac4c-54b40d4056ba) Metabase
 
-![metabase](https://github.com/user-attachments/assets/af38e53d-715e-4350-993d-1cd92ac89f1d)
+[Mindflow-Dashboard.pdf](https://github.com/user-attachments/files/19514542/Mindflow-Dashboard.pdf)
 
 ## 🚀 How to Get Started
 1. Clone the repository:
