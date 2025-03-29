@@ -50,17 +50,32 @@ The project is configured to run in a Docker environment. The `docker-compose.ya
 
 ## ![airflow2](https://github.com/user-attachments/assets/159a8038-6bf5-43fd-b0b1-328a6896b0f6) Airflow
 
+- **DAG:** The Directed Acyclic Graph (DAG) is defined in the `airflow/dags/` folder. The main file, `mindflow_dag.py`, orchestrates the data pipeline tasks, including data extraction, transformation, and loading.  
+- **Tasks:** The pipeline tasks are modularized within the `airflow/tasks/` directory. For example, `task_data_transformation.py` contains the logic for processing and structuring the dataset into Bronze, Silver, and Gold layers.  
+- **Configurations:** All Airflow-specific settings and customizations are located in the `airflow/config/` directory, ensuring proper environment setup and execution.  
+
 ![Airflow](https://github.com/user-attachments/assets/0c5b4195-2f2d-4f79-8de8-060a2cd343a7)
 
 ## ![s3](https://github.com/user-attachments/assets/5a767046-d971-4b7d-97f2-02bb641f4b30) Minio
+
+- **Storage:** Data is stored and managed across the **Bronze, Silver, and Gold** buckets, following the project’s scope and requirements. Each layer ensures a structured and incremental data refinement process.  
+- **Medallion Architecture:** A data design pattern used in the **data lake**, aimed at progressively improving the structure and quality of the data through **Bronze → Silver → Gold** layers.  
+- **Configurations:** All **Metabase** configurations and customizations are defined in the `docker-compose.yml` file, ensuring seamless deployment and integration.  
 
 ![MinIO](https://github.com/user-attachments/assets/3343c493-87e0-463d-92a4-ee8a3802cc86)
 
 ## ![Postgres](https://github.com/user-attachments/assets/79b963dc-9ced-4aa1-b2bd-880588012a6f) Postgres
 
+- **Data-Viz:** Creation and availability of data visualizations, with connections to PostgreSQL, designed to meet the needs of different consumer groups.  
+- **Users:** Configuration of access control to layers and tables based on user groups, ensuring proper data access management.  
+- **Configurations:** All Metabase-specific configurations and customizations are defined in the `docker-compose.yml` file.  
+
 ![DB](https://github.com/user-attachments/assets/b897b181-a202-48f3-a9d0-a05fd1c8bad1)
 
 ## ![metabase](https://github.com/user-attachments/assets/aab28b91-2e03-408b-ac4c-54b40d4056ba) Metabase
+
+- **Data-Viz:** Creation and availability of data visualizations, catering to various types of consumers by providing easy access to insights.  
+- **Configurations:** All Metabase-specific configurations and customizations are defined in the `docker-compose.yml` file.  
 
 ![Mindflow-Dashboard-1](https://github.com/user-attachments/assets/ffb2ee0d-0294-4630-a5ca-d5e71ecfc6bd)
 
