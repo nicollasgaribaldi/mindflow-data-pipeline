@@ -54,7 +54,7 @@ The project is configured to run in a Docker environment. The `docker-compose.ya
 
 ![MinIO](https://github.com/user-attachments/assets/3343c493-87e0-463d-92a4-ee8a3802cc86)
 
-## Postgres
+## ![Postgres](https://github.com/user-attachments/assets/79b963dc-9ced-4aa1-b2bd-880588012a6f) Postgres
 
 ## ![metabase](https://github.com/user-attachments/assets/aab28b91-2e03-408b-ac4c-54b40d4056ba) Metabase
 
